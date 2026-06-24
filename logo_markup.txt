@@ -1,0 +1,8 @@
+Item 1:
+<img src="data:image/png;base64,[TRUNCATED]" alt="Partner logo" loading="lazy"/>
+
+Item 2:
+<img src="data:image/png;base64,[TRUNCATED]" alt="Adobe Firefly" loading="lazy"/>
+
+Item 3:
+<img src="data:image/png;base64,[TRUNCATED]" alt="Partner logo" loading="lazy"/>

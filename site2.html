@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inteliviz Media — Digital Publishing Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #080808;
+    --white: #F0F0F0;
+    --lime: #C8FF00;
+    --card: #111111;
+    --border: #1E1E1E;
+    --muted: #666666;
+    --mid: #999999;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(8, 8, 8, 0.96);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a.active { color: var(--white); }
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--lime);
+  }
+  .cta-btn {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--lime);
+    border: 1px solid var(--lime);
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .cta-btn:hover { background: var(--lime); color: var(--black); }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .eyebrow-line { width: 32px; height: 1px; background: var(--lime); flex-shrink: 0; }
+  .eyebrow-text {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--lime);
+    text-transform: uppercase;
+  }
+
+  /* ── TYPE ── */
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5.5vw, 78px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    max-width: 680px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 3.5vw, 54px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  p.lead {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-top: 20px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 48px; }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid var(--border);
+    min-height: calc(100vh - 64px);
+  }
+  .hero > div:first-child {
+    margin-left: 28px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin-bottom: 32px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--lime);
+  }
+  .hero-actions {
+    display: flex;
+    gap: 24px;
+    margin-top: 44px;
+    align-items: center;
+  }
+  .btn-primary {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: var(--lime);
+    color: var(--black);
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    font-size: 13px;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: var(--white); }
+
+  /* Phone visual */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 540px;
+  }
+  .phones-image {
+    width: min(100%, 550px);
+    max-height: 550px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transform: translateY(-18px);
+    animation: phone-float 12s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes phone-float {
+    0% { transform: translateY(-18px) translateX(0) scale(0.99); }
+    50% { transform: translateY(-30px) translateX(8px) scale(1.02); }
+    100% { transform: translateY(-18px) translateX(0) scale(0.99); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .phones-image { animation: none; }
+  }
+  .phone {
+    width: 200px;
+    height: 380px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .phone-inner {
+    padding: 68px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .pr { height: 7px; background: #222; border-radius: 2px; }
+  .pr.s { width: 55%; }
+  .pr.xs { width: 35%; }
+  .phone-img { height: 80px; background: #1c1c1c; border-radius: 3px; margin: 6px 0; }
+  .phone-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 4px; }
+  .phone-grid div { height: 48px; background: #1a1a1a; border-radius: 3px; }
+  .phone2 {
+    position: absolute;
+    right: 60px;
+    bottom: 0;
+    width: 170px;
+    height: 320px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .phone2::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 48px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .phone2-inner { padding: 60px 12px 12px; display: flex; flex-direction: column; gap: 6px; }
+  .phone2-img { height: 60px; background: #1c1c1c; border-radius: 3px; margin: 4px 0; }
+  .phone2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px; }
+  .phone2-grid div { height: 38px; background: #1a1a1a; border-radius: 3px; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: #0D0D0D;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: ticker-scroll 34s linear infinite;
+  }
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    padding: 0 36px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ticker-num {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--lime);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .ticker-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: #d0d0d0;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: start;
+  }
+  .about-feature {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .about-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--lime);
+    padding-top: 2px;
+  }
+  .about-text { font-size: 14px; color: var(--mid); line-height: 1.7; }
+
+  /* ── CHANNELS ── */
+  .channels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 64px;
+  }
+  .channel-card {
+    background: var(--black);
+    padding: 40px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .channel-card:hover { background: #0E0E0E; }
+  .channel-badge {
+    position: absolute;
+    top: 24px; right: 24px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--lime);
+    border: 1px solid rgba(200, 255, 0, 0.3);
+    padding: 4px 8px;
+    text-transform: uppercase;
+  }
+  .channel-icon {
+    width: 48px; height: 48px;
+    background: var(--card);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  .channel-handle { font-size: 13px; color: var(--mid); margin-bottom: 24px; }
+  .channel-stats { display: flex; gap: 28px; }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .stat-lbl {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── COLLABORATIONS ── */
+  .collab-section { padding: 96px 48px; border-top: 1px solid var(--border); }
+  .collab-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    gap: 32px;
+  }
+  .collab-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .collab-desc { font-size: 14px; color: var(--mid); max-width: 280px; line-height: 1.7; }
+
+  /* Marquee */
+  .marquee-wrap {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-wrap::before,
+  .marquee-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+  .marquee-wrap::after  { right: 0; background: linear-gradient(to left, var(--black), transparent); }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 36s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 28px 40px;
+    border-right: 1px solid var(--border);
+    min-width: 170px;
+    flex-shrink: 0;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .logo-item:hover { background: #0E0E0E; }
+  .logo-item img {
+    height: 28px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.55;
+    transition: opacity 0.2s;
+  }
+  .logo-item:hover img { opacity: 0.9; }
+  .logo-item span {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .logo-item:hover span { color: var(--white); }
+
+  /* ── ANALYTICS ── */
+  .analytics-section { border-top: 1px solid var(--border); }
+  .stat-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 64px;
+  }
+  .stat-card {
+    background: var(--black);
+    padding: 36px;
+    transition: background 0.2s;
+  }
+  .stat-card:hover { background: #0E0E0E; }
+  .stat-card-num {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .stat-card-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  /* ── SERVICES ── */
+  .services-section { border-top: 1px solid var(--border); text-align: center; }
+  .services-title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 8vw, 96px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 16px;
+  }
+  .services-title .accent { color: var(--lime); }
+  .services-sub { font-size: 15px; color: var(--mid); margin-bottom: 56px; letter-spacing: 0.01em; }
+  .tags-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .tag {
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--mid);
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+    cursor: default;
+  }
+  .tag:hover { border-color: var(--lime); color: var(--white); }
+  .tag.featured { border-color: #2e2e2e; color: var(--white); font-weight: 500; }
+
+  /* ── CONTACT ── */
+  .contact-section { border-top: 1px solid var(--border); text-align: center; }
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+  .contact-title em { font-style: normal; color: var(--lime); }
+  .contact-sub { color: var(--mid); font-size: 15px; margin-top: 20px; line-height: 1.7; }
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 48px;
+    font-size: 15px;
+    color: var(--mid);
+    border: 1px solid var(--border);
+    padding: 18px 36px;
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .contact-email:hover { border-color: var(--lime); color: var(--white); }
+  .contact-socials {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    margin-top: 16px;
+  }
+  .social-btn {
+    padding: 14px 32px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .social-btn:last-child { border-right: none; }
+  .social-btn:hover { color: var(--white); background: #0E0E0E; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--white);
+  }
+  .footer-email { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .footer-copy { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; gap: 48px; }
+    .hero > div:first-child { margin-left: 0; }
+    .hero-visual { height: 380px; }
+    .phones-image { max-height: 400px; transform: translateY(-14px); }
+    .phone { width: 160px; height: 300px; }
+    .phone2 { display: none; }
+    .ticker { padding: 20px 0; }
+    .ticker-item { padding: 0 28px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .channels-grid { grid-template-columns: 1fr; }
+    .collab-header { flex-direction: column; align-items: flex-start; }
+    .stat-cards { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo">Inteliviz Media</a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#social">Social Presence</a></li>
+    <li><a href="#partnerships">Partnerships</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="cta-btn">WORK WITH US</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="hero-badge">Digital Publishing Media</div>
+    <h1>If you're ready to grow, collaborate, or start a conversation</h1>
+    <p class="lead">Millions of reach across Facebook and Instagram — we break the biggest stories in artificial intelligence, robotics, and emerging technology.</p>
+    <div class="hero-actions">
+      <a href="#social" class="btn-primary">EXPLORE OUR REACH →</a>
+      <a href="#partnerships" class="btn-ghost">Our Partnerships</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img class="phones-image" src="phones.png" alt="Inteliviz Media phone screens">
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">
+      <div class="ticker-num">400K+</div>
+      <div class="ticker-label">Instagram Audience</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">40M+</div>
+      <div class="ticker-label">Quarterly Reach</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">100K+</div>
+      <div class="ticker-label">Facebook Followers</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">30+</div>
+      <div class="ticker-label">Brand Collaborations</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">400K+</div>
+      <div class="ticker-label">Instagram Audience</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">40M+</div>
+      <div class="ticker-label">Quarterly Reach</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">100K+</div>
+      <div class="ticker-label">Facebook Followers</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">30+</div>
+      <div class="ticker-label">Brand Collaborations</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">400K+</div>
+      <div class="ticker-label">Instagram Audience</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">40M+</div>
+      <div class="ticker-label">Quarterly Reach</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">100K+</div>
+      <div class="ticker-label">Facebook Followers</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-num">30+</div>
+      <div class="ticker-label">Brand Collaborations</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" style="border-bottom:1px solid var(--border)">
+  <div class="about-grid">
+    <div>
+      <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">About Us</span></div>
+      <h2>Inteliviz Media</h2>
+      <p class="lead">We are a leading Digital Publishing Media company dedicated to bringing the AI revolution to the masses. With a combined audience of millions, we shape how people understand and engage with artificial intelligence and emerging technology.</p>
+    </div>
+    <div style="padding-top:8px">
+      <div class="about-feature">
+        <span class="about-num">01</span>
+        <span class="about-text">Largest independent AI media network on Facebook and Instagram, covering the full spectrum of emerging technology.</span>
+      </div>
+      <div class="about-feature">
+        <span class="about-num">02</span>
+        <span class="about-text">We don't just report the story — we are the story. Trusted by 40M+ quarterly readers who rely on us for what's next.</span>
+      </div>
+      <div class="about-feature">
+        <span class="about-num">03</span>
+        <span class="about-text">Partnered with 30+ leading brands to deliver sponsored content that converts, without sacrificing editorial integrity.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PRESENCE -->
+<section id="social" style="border-bottom:1px solid var(--border)">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Social Presence</span></div>
+  <h2>Channels We Own</h2>
+  <p class="lead">Dominant across every major platform — covering the AI revolution in real time.</p>
+  <div class="channels-grid">
+    <div class="channel-card">
+      <div class="channel-badge">★ Top Creator</div>
+      <div class="channel-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="url(#ig1)"/><defs><radialGradient id="ig1" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#ffd879"/><stop offset="25%" stop-color="#fb5e3b"/><stop offset="65%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></radialGradient></defs><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.5"/><circle cx="17" cy="7" r="1.2" fill="white"/><rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="white" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <div class="channel-handle">@artificialintelligence.co</div>
+      <div class="channel-stats">
+        <div><div class="stat-val">400K+</div><div class="stat-lbl">Followers</div></div>
+        <div><div class="stat-val">40M+</div><div class="stat-lbl">Qtly Reach</div></div>
+        <div><div class="stat-val">600K+</div><div class="stat-lbl">Interactions</div></div>
+      </div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="url(#ig2)"/><defs><radialGradient id="ig2" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#ffd879"/><stop offset="25%" stop-color="#fb5e3b"/><stop offset="65%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></radialGradient></defs><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.5"/><circle cx="17" cy="7" r="1.2" fill="white"/><rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="white" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <div class="channel-handle">@inteliviz</div>
+      <div class="channel-stats">
+        <div><div class="stat-val">43K+</div><div class="stat-lbl">Followers</div></div>
+        <div><div class="stat-val">10M+</div><div class="stat-lbl">Mo. Reach</div></div>
+        <div><div class="stat-val">100K+</div><div class="stat-lbl">Interactions</div></div>
+      </div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-badge">🏆 Biggest in AI</div>
+      <div class="channel-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#1877F2"/><path d="M16 12h-2.5v7h-3v-7H8.5v-2.5h2V7.8C10.5 6 11.5 5 13.5 5H16v2.5h-1.5c-.8 0-1 .4-1 1v1h2.5L16 12z" fill="white"/></svg>
+      </div>
+      <div class="channel-handle">facebook.com/intelivizmedia</div>
+      <div class="channel-stats">
+        <div><div class="stat-val">100K+</div><div class="stat-lbl">Followers</div></div>
+        <div><div class="stat-val">20K+</div><div class="stat-lbl">Impressions</div></div>
+        <div><div class="stat-val">1K+</div><div class="stat-lbl">Interactions</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATIONS -->
+<section class="collab-section" id="partnerships">
+  <div class="collab-header">
+    <div>
+      <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Partnerships</span></div>
+      <div class="collab-title">COLLABORATIONS</div>
+    </div>
+    <p class="collab-desc">Working with leading brands and organizations to deliver exceptional results and innovative solutions.</p>
+  </div>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marquee">
+
+      <!-- Set 1 -->
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/higgsfield.ai" alt="Higgsfield" onerror="this.style.display='none'">
+        <span>Higgsfield</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/invideo.io" alt="InVideo" onerror="this.style.display='none'">
+        <span>InVideo</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/cluely.com" alt="Cluely" onerror="this.style.display='none'">
+        <span>Cluely</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/lovable.dev" alt="Lovable" onerror="this.style.display='none'">
+        <span>Lovable</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/kimi.ai" alt="KIMI" onerror="this.style.display='none'">
+        <span>KIMI</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/artlist.io" alt="Artlist" onerror="this.style.display='none'">
+        <span>Artlist</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/brainco.tech" alt="BrainCo" onerror="this.style.display='none'">
+        <span>BrainCo</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/abacus.ai" alt="Abacus" onerror="this.style.display='none'">
+        <span>Abacus</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/rocket.com" alt="Rocket" onerror="this.style.display='none'">
+        <span>Rocket</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/io.net" alt="I/O" onerror="this.style.display='none'">
+        <span>I/O</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/adobe.com" alt="Adobe Firefly" onerror="this.style.display='none'">
+        <span>Adobe Firefly</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/replit.com" alt="Replit" onerror="this.style.display='none'">
+        <span>Replit</span>
+      </div>
+
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/higgsfield.ai" alt="Higgsfield" onerror="this.style.display='none'">
+        <span>Higgsfield</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/invideo.io" alt="InVideo" onerror="this.style.display='none'">
+        <span>InVideo</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/cluely.com" alt="Cluely" onerror="this.style.display='none'">
+        <span>Cluely</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/lovable.dev" alt="Lovable" onerror="this.style.display='none'">
+        <span>Lovable</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/kimi.ai" alt="KIMI" onerror="this.style.display='none'">
+        <span>KIMI</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/artlist.io" alt="Artlist" onerror="this.style.display='none'">
+        <span>Artlist</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/brainco.tech" alt="BrainCo" onerror="this.style.display='none'">
+        <span>BrainCo</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/abacus.ai" alt="Abacus" onerror="this.style.display='none'">
+        <span>Abacus</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/rocket.com" alt="Rocket" onerror="this.style.display='none'">
+        <span>Rocket</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/io.net" alt="I/O" onerror="this.style.display='none'">
+        <span>I/O</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/adobe.com" alt="Adobe Firefly" onerror="this.style.display='none'">
+        <span>Adobe Firefly</span>
+      </div>
+      <div class="logo-item">
+        <img src="https://logo.clearbit.com/replit.com" alt="Replit" onerror="this.style.display='none'">
+        <span>Replit</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+<section class="analytics-section" id="analytics" style="padding:96px 48px">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Analytics</span></div>
+  <h2>Our Reach & Audience</h2>
+  <p class="lead">Real numbers. Real engagement. A global community obsessed with AI and tech.</p>
+  <div class="stat-cards">
+    <div class="stat-card">
+      <div class="stat-card-num" style="color:var(--lime)">400K+</div>
+      <div class="stat-card-label">Instagram Audience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num" style="color:var(--white)">40M+</div>
+      <div class="stat-card-label">Quarterly Reach</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num" style="color:var(--white)">100K+</div>
+      <div class="stat-card-label">Facebook Followers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num" style="color:var(--lime)">30+</div>
+      <div class="stat-card-label">Brand Collaborations</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="eyebrow" style="justify-content:center">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Services & Content Focus</span>
+    <div class="eyebrow-line"></div>
+  </div>
+  <div class="services-title">100% <span class="accent">AI</span> & Tech</div>
+  <p class="services-sub">Everything we create lives at the intersection of technology and tomorrow.</p>
+  <div class="tags-wrap">
+    <span class="tag featured">Artificial Intelligence</span>
+    <span class="tag featured">Large Language Models</span>
+    <span class="tag">Robotics</span>
+    <span class="tag">AGI</span>
+    <span class="tag featured">Machine Learning</span>
+    <span class="tag">Neural Networks</span>
+    <span class="tag">ChatGPT</span>
+    <span class="tag">Computer Vision</span>
+    <span class="tag featured">Tech News</span>
+    <span class="tag">Open Source AI</span>
+    <span class="tag">Startups</span>
+    <span class="tag">Space Tech</span>
+    <span class="tag">Autonomous Vehicles</span>
+    <span class="tag">Generative AI</span>
+    <span class="tag">Semiconductors</span>
+    <span class="tag">Quantum Computing</span>
+    <span class="tag featured">Future of Work</span>
+    <span class="tag">AI Ethics</span>
+    <span class="tag">Cybersecurity</span>
+    <span class="tag">AR / VR</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="eyebrow" style="justify-content:center">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Let's Connect</span>
+    <div class="eyebrow-line"></div>
+  </div>
+  <div class="contact-title">Ready to Reach<br><em>Millions?</em></div>
+  <p class="contact-sub">
+    Collaborate with one of the biggest AI media brands online.<br>
+    Sponsorships, partnerships, and content integrations.
+  </p>
+  <div>
+    <a href="mailto:collabaico@gmail.com" class="contact-email">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      collabaico@gmail.com
+    </a>
+  </div>
+  <div>
+    <div class="contact-socials">
+      <a href="#" class="social-btn">Instagram</a>
+      <a href="#" class="social-btn">Facebook</a>
+      <a href="mailto:collabaico@gmail.com" class="social-btn">Email Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Inteliviz Media</div>
+    <div class="footer-email">collabaico@gmail.com</div>
+  </div>
+  <div class="footer-copy">© 2026 Inteliviz Media · Digital Publishing Media · All rights reserved</div>
+</footer>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], nav');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
