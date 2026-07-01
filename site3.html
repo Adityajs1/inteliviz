@@ -7,7 +7,8 @@
   <title>Inteliviz Media — Digital Publishing Media</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
   <style>
     *,
@@ -51,7 +52,7 @@
       justify-content: space-between;
       padding: 0 48px;
       height: 64px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: none;
       position: sticky;
       top: 0;
       background: rgba(8, 8, 8, 0.96);
@@ -145,8 +146,8 @@
     /* ── TYPE ── */
     h1 {
       font-family: var(--font-display);
-      font-size: clamp(40px, 4.5vw, 64px);
-      font-weight: 800;
+      font-size: clamp(48px, 6vw, 92px);
+      font-weight: 900;
       line-height: 1.0;
       letter-spacing: -0.03em;
       max-width: 680px;
@@ -175,19 +176,34 @@
       width: 100%;
     }
 
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ── HERO ── */
     .hero {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 40px;
       align-items: center;
       padding-top: 20px;
       padding-bottom: 20px;
       min-height: calc(100vh - 64px);
+      max-width: 1440px;
+      margin: 0 auto;
     }
 
     .hero > div:first-child {
-      transform: translateX(4px);
+      padding-left: 4vw;
     }
 
     .hero-badge {
@@ -256,10 +272,10 @@
     .hero-image-container {
       flex: 1;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       position: relative;
-      max-width: 600px;
+      max-width: 100%;
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
@@ -274,7 +290,7 @@
     .hero-image {
       width: 100%;
       height: auto;
-      max-height: 460px;
+      max-height: 520px;
       object-fit: contain;
       background: transparent;
       animation: hero-float 12s ease-in-out infinite alternate;
@@ -942,7 +958,8 @@
   <section class="hero" id="home">
     <div>
       <div class="hero-badge">Digital Publishing Media</div>
-      <h1>If you're ready to grow, collaborate, or start a conversation</h1>
+      <h1>If you're ready to grow, collaborate, or simply start a conversation</h1>
+      <h2 style="font-size: clamp(32px, 3.2vw, 44px); margin-top: 16px; font-weight: 800; color: var(--white); letter-spacing: -0.02em;">We Are Just One Message Away.</h2>
       <p class="lead">Millions of reach across Facebook and Instagram, we break the biggest stories in artificial
         intelligence, robotics, and emerging technology.</p>
       <div class="hero-actions">
@@ -957,7 +974,7 @@
   </section>
 
   <!-- STATS TICKER -->
-  <div class="stats-bar" aria-label="Key statistics">
+  <div class="stats-bar reveal" aria-label="Key statistics">
     <div class="stats-track">
       <div class="stat-item"><span class="stat-num">400K+</span><span class="stat-label">Instagram Audience</span></div>
       <div class="stat-item stat-sep" aria-hidden="true">·</div>
@@ -981,7 +998,7 @@
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="about-grid">
+    <div class="about-grid reveal">
       <div>
         <div class="eyebrow">
           <div class="eyebrow-line"></div><span class="eyebrow-text">About Us</span>
@@ -1013,10 +1030,10 @@
 
   <!-- CONTENT FOCUS CARDS -->
   <section id="content" style="padding-top: 64px; padding-bottom: 64px;">
-    <div class="eyebrow">
+    <div class="eyebrow reveal">
       <div class="eyebrow-line"></div><span class="eyebrow-text">Content</span>
     </div>
-    <div class="cards-grid">
+    <div class="cards-grid reveal">
       <div class="feature-card">
         <div class="card-icon">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.2"
@@ -1299,7 +1316,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="contact-section" id="contact">
+  <section class="contact-section reveal" id="contact">
     <div class="eyebrow" style="justify-content:center">
       <div class="eyebrow-line"></div>
       <span class="eyebrow-text">Let's Connect</span>
@@ -1376,6 +1393,18 @@
         }, 150);
       }
     });
+
+    // Reveal elements on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // Parallax effect on scroll for hero image
     window.addEventListener("scroll", () => {
