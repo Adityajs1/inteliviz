@@ -166,12 +166,13 @@
       color: var(--mid);
       line-height: 1.75;
       max-width: 480px;
-      margin-top: 16px;
+      margin-top: 10px;
     }
 
     /* ── SECTIONS ── */
     section {
-      padding: 32px 48px;
+      padding: 64px 48px;
+      scroll-margin-top: 80px;
       box-sizing: border-box;
       width: 100%;
     }
@@ -213,7 +214,7 @@
       font-size: 11px;
       letter-spacing: 0.1em;
       color: var(--mid);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .hero-badge::before {
@@ -228,7 +229,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 24px;
-      margin-top: 28px;
+      margin-top: 16px;
       align-items: center;
     }
 
@@ -830,7 +831,7 @@
     }
 
     .feature-card {
-      background: #151515;
+      background: #0a0a0a;
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 12px;
       padding: 32px 24px;
@@ -883,7 +884,8 @@
       }
 
       section {
-        padding: 24px 24px;
+        padding: 48px 24px;
+        scroll-margin-top: 64px;
       }
 
       .hero {
@@ -957,7 +959,9 @@
     <div>
       <div class="hero-badge">Digital Publishing Media</div>
       <h1>If you're ready to grow, collaborate, or simply start a conversation</h1>
-      <h2 style="font-size: clamp(24px, 2.5vw, 34px); margin-top: 16px; font-weight: 800; color: var(--white); letter-spacing: -0.02em;">We Are Just One Message Away.</h2>
+      <h2
+        style="font-size: clamp(24px, 2.5vw, 34px); margin-top: 8px; font-weight: 800; color: var(--white); letter-spacing: -0.02em;">
+        We Are Just One Message Away.</h2>
       <p class="lead">Millions of reach across Facebook and Instagram, we break the biggest stories in artificial
         intelligence, robotics, and emerging technology.</p>
       <div class="hero-actions">
@@ -1014,7 +1018,7 @@
         </div>
         <div class="about-feature">
           <span class="about-num">02</span>
-          <span class="about-text">We don't just report the story — we are the story. Trusted by 40M+ quarterly readers
+          <span class="about-text">We don't just report the story. We are the story. Trusted by 40M+ quarterly readers
             who rely on us for what's next.</span>
         </div>
         <div class="about-feature">
@@ -1026,53 +1030,6 @@
     </div>
   </section>
 
-  <!-- CONTENT FOCUS CARDS -->
-  <section id="content" style="padding-top: 64px; padding-bottom: 64px;">
-    <div class="eyebrow reveal">
-      <div class="eyebrow-line"></div><span class="eyebrow-text">Content</span>
-    </div>
-    <div class="cards-grid reveal">
-      <div class="feature-card">
-        <div class="card-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="7" r="2.5"></circle>
-            <circle cx="6" cy="17" r="2.5"></circle>
-            <circle cx="18" cy="17" r="2.5"></circle>
-            <path d="M10.8 8.9L7.2 15.1"></path>
-            <path d="M13.2 8.9l3.6 6.2"></path>
-          </svg>
-        </div>
-        <h3 class="card-title">AI Relevant</h3>
-        <p class="card-desc">Trend-aware content that speaks directly to AI enthusiasts and learners of today.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="card-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="5" width="16" height="11" rx="2" ry="2"></rect>
-            <path d="M9 20h6"></path>
-            <path d="M12 16v4"></path>
-          </svg>
-        </div>
-        <h3 class="card-title">Value-Driven</h3>
-        <p class="card-desc">We post for attention as well as to educate, empower, and elevate.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="card-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4l16 4-4 16-4-8-8-4z"></path>
-            <path d="M14 10l-4 4"></path>
-          </svg>
-        </div>
-        <h3 class="card-title">Visually Elite</h3>
-        <p class="card-desc">Clean, modern, and aesthetic visuals tailored for high-performing digital platforms.</p>
-      </div>
-    </div>
-  </section>
 
   <!-- SOCIAL PRESENCE -->
   <section id="social">
@@ -1279,6 +1236,55 @@
 
 
 
+
+
+  <!-- CONTENT FOCUS CARDS -->
+  <section id="services" style="padding-top: 64px; padding-bottom: 64px;">
+    <div class="eyebrow reveal">
+      <div class="eyebrow-line"></div><span class="eyebrow-text">SERVICES</span>
+    </div>
+    <div class="cards-grid reveal">
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="7" r="2.5"></circle>
+            <circle cx="6" cy="17" r="2.5"></circle>
+            <circle cx="18" cy="17" r="2.5"></circle>
+            <path d="M10.8 8.9L7.2 15.1"></path>
+            <path d="M13.2 8.9l3.6 6.2"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">AI Relevant</h3>
+        <p class="card-desc">Trend-aware content that speaks directly to AI enthusiasts and learners of today.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="5" width="16" height="11" rx="2" ry="2"></rect>
+            <path d="M9 20h6"></path>
+            <path d="M12 16v4"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Value-Driven</h3>
+        <p class="card-desc">We post for attention as well as to educate, empower, and elevate.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4l16 4-4 16-4-8-8-4z"></path>
+            <path d="M14 10l-4 4"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Visually Elite</h3>
+        <p class="card-desc">Clean, modern, and aesthetic visuals tailored for high-performing digital platforms.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACT -->
   <section class="contact-section reveal" id="contact">
