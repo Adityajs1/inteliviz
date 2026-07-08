@@ -134,9 +134,9 @@ new_html = """
       <div class="footer-left">
         <h3 class="footer-heading">Follow Inteliviz</h3>
         <div class="footer-links">
-          <a href="#">INSTAGRAM</a>
+          <a href="https://www.instagram.com/inteliviz/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
           <a href="#">TELEGRAM</a>
-          <a href="#">FACEBOOK</a>
+          <a href="https://www.facebook.com/profile.php?id=61557410417163" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
           <a href="mailto:collabaico@gmail.com">CONTACT US</a>
         </div>
       </div>
