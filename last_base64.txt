@@ -1,0 +1,5 @@
+﻿eroImageContainer">
+      <a href="#image1" class="image-label image-label--1" id="image1"></a>
+      <a href="#image2" class="image-label image-label--2" id="image2"></a>
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDgAAAVGCAYAAAB7TwuKAAAAAXNSR0IArs4c6QAAAIRlWElmTU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAADYAAAAAQAAANgAAAABAAOgAQA
